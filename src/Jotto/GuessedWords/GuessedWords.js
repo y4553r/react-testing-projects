@@ -8,6 +8,22 @@ const GuessedWords = ({ guessedWords }) => {
         <span data-test='guess-instructions'>
           Try to guess the secret word!
         </span>}
+      {guessedWords.length && <table data-test="guessed-words">
+        <thead>
+          <tr>
+            <th>Guessed Word</th>
+            <th>Matching Letters</th>
+          </tr>
+        </thead>
+        <tbody>
+          {guessedWords.map((word, i) => (
+            <tr key={i} data-test="guessed-word">
+              <td>{word.guessedWord}</td>
+              <td>{word.letterMatchCount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>}
     </div>
   );
 }
