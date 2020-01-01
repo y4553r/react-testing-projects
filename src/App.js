@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-import Counter from './Counter/Counter';
+// import Counter from './Counter/Counter';
 import Jotto from './Jotto/Jotto';
 
-function App() {
-  return (
-    <div className="App">
-      {/* <Counter /> */}
-      <Jotto />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        {/* <Counter /> */}
+        <Jotto />
+      </div>
+    );
+  }
 }
 
 export default App;
