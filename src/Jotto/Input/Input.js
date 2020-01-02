@@ -9,17 +9,21 @@ class Input extends Component {
 
   render() {
     const { success } = this.props;
-    return !success && (
+    return (
       <Form data-test="component-input">
-        <InputField
-        data-test="input-box"
-        type="text"
-        placeholder="enter guess"
-        />
-        <Button 
-        data-test="submit-button"
-        type="submit"
-        >Submit</Button>
+        {!success && (
+          <>
+            <InputField
+              data-test="input-box"
+              type="text"
+              placeholder="enter guess"
+            />
+            <Button
+              data-test="submit-button"
+              type="submit"
+            >Submit</Button>
+          </>
+        )}
       </Form>
     );
   }
@@ -42,7 +46,7 @@ const InputField = styled.input`
     box-shadow: 0 5px 0 black;
   }
   `;
-  const Button = styled.button`
+const Button = styled.button`
   outline: none;
   border: none;
   padding: 10px 20px;
