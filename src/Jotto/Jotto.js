@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Congrats from './Congrats/Congrats';
 import GuessedWords from './GuessedWords/GuessedWords';
+import Input from './Input/Input';
 
 class Jotto extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class Jotto extends Component {
     return(
       <Container data-test='component-jotto'>
         <Title>JOTTO</Title>
+        <Input />
         <Congrats success={true} />
         <GuessedWords guessedWords={guessedWords} />
       </Container>
