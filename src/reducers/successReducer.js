@@ -6,7 +6,7 @@ import { actionTypes } from '../actions';
  * @param {object} action - action to be reduced.
  * @returns {object} - new success state
  */
-export default (state, action) => {
+export default (state = {}, action) => {
   switch(action.type) {
     case actionTypes.CORRECT_GUESS:
       return { ...state, success: true };
