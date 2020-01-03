@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../test/testUtils';
-import Jotto from './Jotto';
+import Jotto, { UnconnectedJotto } from './Jotto';
 
 /**
  * Factory function to create a ShallowWrapper for the Jotto Component
@@ -49,3 +49,19 @@ describe('redux props', () => {
     expect(getSecretWordProp).toBeInstanceOf(Function);
   });
 });
+
+test('`getSecretWord` runs on Jetto mount', () => {
+  const getSecretWordMock = jest.fn();
+  // set up component with getSecretWordMock as the getSecretWord prop
+  const props = {
+    success: false,
+    guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
+    getSecretWord: getSecretWordMock,
+  }
+  const wrapper = shallow(<UnconnectedJotto {...props} />);
+  // run lifecycle method
+  wrapper.instance().componentDidMount();
+  // check to see if mock ran
+  const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
+  expect(getSecretWordCallCount).toBe(1);
+})

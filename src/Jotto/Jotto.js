@@ -7,9 +7,13 @@ import Congrats from './Congrats/Congrats';
 import GuessedWords from './GuessedWords/GuessedWords';
 import Input from './Input/Input';
 
-class Jotto extends Component {
+export class UnconnectedJotto extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.getSecretWord();
   }
 
   render() {
@@ -52,4 +56,4 @@ const mapStateToProps = ({ success, guessedWords, secretWord }) => {
   };
 };
 
-export default connect(mapStateToProps, { getSecretWord })(Jotto);
+export default connect(mapStateToProps, { getSecretWord })(UnconnectedJotto);
