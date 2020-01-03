@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Input from './Input';
+import Input, { UnconnectedInput } from './Input';
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 
 /**
@@ -56,17 +56,6 @@ describe('render', () => {
     })
   });
 });
-describe('update state', () => {
-  test('renders component without error', () => {
-
-  });
-  test('does not render the input box', () => {
-
-  });
-  test('does not render the submit button', () => {
-
-  });
-});
 describe('redux props', () => {
   test('has `success` piece of state as prop', () => {
     const success = true;
@@ -80,3 +69,22 @@ describe('redux props', () => {
     expect(guessWordProp).toBeInstanceOf(Function);
   });
 });
+describe('`guessWord` action creator call', () => {
+  test('calls `guessWord` when form submited', () => {
+    const guessWordMock = jest.fn();
+    // setup component with guessWordMock as guessWord prop
+    const props = {
+      guessWord: guessWordMock
+    }
+    const wrapper = shallow(<UnconnectedInput {...props} />);
+    // simulate submit
+    const form = findByTestAttr(wrapper, 'component-input');
+    form.simulate('submit');
+    // check to see if mock ran
+    const guessWordMockCallsCount = guessWordMock.mock.calls.length;
+    expect(guessWordMockCallsCount).toBe(1);
+  });
+  test('`guessWord` called with a single String argument', () => {
+
+  })
+})

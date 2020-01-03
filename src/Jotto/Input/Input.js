@@ -4,15 +4,19 @@ import { connect } from 'react-redux';
 
 import { guessWord } from '../../actions';
 
-class Input extends Component {
+export class UnconnectedInput extends Component {
   constructor(props) {
     super(props);
+  }
+
+  submitButtonHandler = () => {
+    this.props.guessWord();
   }
 
   render() {
     const { success } = this.props;
     return (
-      <Form data-test="component-input">
+      <Form data-test="component-input" onSubmit={this.submitButtonHandler}>
         {!success && (
           <>
             <InputField
@@ -72,4 +76,4 @@ const mapStateToProps = ({ success }) => {
   };
 }
 
-export default connect(mapStateToProps, { guessWord })(Input);
+export default connect(mapStateToProps, { guessWord })(UnconnectedInput);
