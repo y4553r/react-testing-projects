@@ -7,26 +7,40 @@ import { guessWord } from '../../actions';
 export class UnconnectedInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentGuess: null,
+    }
+
+    this.submitButtonHandler = this.submitButtonHandler.bind(this);
   }
 
-  submitButtonHandler = () => {
-    this.props.guessWord();
+  changeInputHandler = e => {
+    this.setState({ currentGuess: e.target.value });
+  }
+  submitButtonHandler = e => {
+    e.preventDefault();
+    const guessedWord = this.state.currentGuess;
+    if(guessedWord && guessedWord.length > 0)
+      this.props.guessWord(this.state.currentGuess);
   }
 
   render() {
     const { success } = this.props;
     return (
-      <Form data-test="component-input" onSubmit={this.submitButtonHandler}>
+      <Form data-test="component-input">
         {!success && (
           <>
             <InputField
               data-test="input-box"
               type="text"
               placeholder="enter guess"
+              value={this.state.currentGuess}
+              onChange={this.changeInputHandler}
             />
             <Button
               data-test="submit-button"
               type="submit"
+              onClick={this.submitButtonHandler}
             >Submit</Button>
           </>
         )}
