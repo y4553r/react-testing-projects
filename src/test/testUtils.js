@@ -29,7 +29,7 @@ export const findByTestAttr = (wrapper, val) => {
 /**
  * Checks if props type passed to component are conforme to actual props
  * @param {component} component - tested component
- * @param {object} conformingProps - test props
+ * @param {object} conformingProps - conforme props passed to the component
  */
 export const checkProps = (component, conformingProps) => {
   const propError = checkPropTypes(
