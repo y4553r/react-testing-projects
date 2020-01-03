@@ -56,22 +56,6 @@ describe('render', () => {
     })
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 describe('update state', () => {
   test('renders component without error', () => {
 
@@ -81,5 +65,18 @@ describe('update state', () => {
   });
   test('does not render the submit button', () => {
 
+  });
+});
+describe('redux props', () => {
+  test('has success piece of state as prop', () => {
+    const success = true;
+    const wrapper = setup({ success });
+    const successProp = wrapper.instance().props.success;
+    expect(successProp).toBe(success);
+  });
+  test('`guesWord` action creator is a function prop', () => {
+    const wrapper = setup();
+    const guessWordProp = wrapper.instance().props.guessWord;
+    expect(guessWordProp).toBeInstanceOf(Function);
   });
 });

@@ -7,7 +7,7 @@ import { actionTypes } from '../actions';
  * @returns {string} - new state (secret word payload from action)
  */
 export default (state = null, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.SET_SECRET_WORD:
       return action.payload;
     default:

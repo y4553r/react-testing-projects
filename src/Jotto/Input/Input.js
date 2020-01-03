@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import { guessWord } from '../../actions';
+
 class Input extends Component {
   constructor(props) {
     super(props);
@@ -70,4 +72,4 @@ const mapStateToProps = ({ success }) => {
   };
 }
 
-export default connect(mapStateToProps)(Input);
+export default connect(mapStateToProps, { guessWord })(Input);
