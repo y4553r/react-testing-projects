@@ -94,5 +94,8 @@ describe('`guessWord` action creator call', () => {
   test('`guessWord` called with a single String argument', () => {
     const guessWordArg = guessWordMock.mock.calls[0][0];
     expect(guessWordArg).toBe(guessedWord);
-  })
+  });
+  test('submit clears the input box', () => {
+    expect(wrapper.state('currentGuess')).toBe('');
+  });
 })
