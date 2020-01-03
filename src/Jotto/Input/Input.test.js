@@ -68,7 +68,7 @@ describe('update state', () => {
   });
 });
 describe('redux props', () => {
-  test('has success piece of state as prop', () => {
+  test('has `success` piece of state as prop', () => {
     const success = true;
     const wrapper = setup({ success });
     const successProp = wrapper.instance().props.success;

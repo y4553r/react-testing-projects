@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
+import { getSecretWord } from '../actions';
 import Congrats from './Congrats/Congrats';
 import GuessedWords from './GuessedWords/GuessedWords';
 import Input from './Input/Input';
@@ -8,21 +10,15 @@ import Input from './Input/Input';
 class Jotto extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      guessedWords: [
-        {guessedWord: 'train', letterMatchCount: 3},
-        {guessedWord: 'party', letterMatchCount: 5},
-      ]
-    }
   }
 
   render() {
-    const { guessedWords } = this.state;
+    const { success, secretWord, guessedWords } = this.props;
     return(
       <Container data-test='component-jotto'>
         <Title>JOTTO</Title>
+        <Congrats success={success} />
         <Input />
-        <Congrats success={true} />
         <GuessedWords guessedWords={guessedWords} />
       </Container>
     );
@@ -48,4 +44,12 @@ const Title = styled.h1`
   box-shadow: 0 10px 0 black;
 `;
 
-export default Jotto;
+const mapStateToProps = ({ success, guessedWords, secretWord }) => {
+  return {
+    success,
+    guessedWords,
+    secretWord,
+  };
+};
+
+export default connect(mapStateToProps, { getSecretWord })(Jotto);
